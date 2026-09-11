@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatrVaani - Hindi to Santali (Ol Chiki) Voice & Pedagogy Suite</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+Ol+Chiki:wght@500;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-badge">Offline Capable &bull; NIPUN Bharat FLN &bull; Indic AI4Bharat Pipeline</div>
+      <h1 class="brand-title">MatrVaani</h1>
+      <p class="subtitle">Hindi <span>➔</span> Santali (ᱚᱞ ᱪᱤᱠᱤ) &bull; Real-Time Voice Translation & Vernacular Pedagogy Suite</p>
+    </header>
+
+    <!-- Colab Live GPU Bridge Banner -->
+    <section class="colab-bridge-card">
+      <div class="bridge-left">
+        <div class="bridge-status-pill" id="bridgeStatusPill">
+          <span class="status-pulse-dot" id="colabDot"></span>
+          <span id="colabStatusText">Colab GPU: Disconnected</span>
+        </div>
+        <div class="bridge-input-wrap">
+          <input type="url" id="colabUrlInput" class="bridge-url-input" placeholder="Paste Colab Tunnel URL here (e.g. https://...trycloudflare.com)" />
+          <button id="connectColabBtn" class="btn btn-sm btn-primary">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            Connect Colab
+          </button>
+        </div>
+      </div>
+      <div class="bridge-right">
+        <span class="bridge-hint" id="bridgeHint">Run Cell in Colab to start the live TTS server</span>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <main class="converter-grid">
+      
+      <!-- Input Card (Hindi) -->
+      <section class="card input-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="badge lang-badge">हिन्दी (Hindi)</span>
+            <span class="status-indicator" id="micStatus">Mic Ready</span>
+          </div>
+          <div class="card-actions">
+            <button id="micBtn" class="btn btn-primary" title="Speak in Hindi">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="22"/>
+              </svg>
+              <span id="micBtnText">बोलें (Voice)</span>
+            </button>
+            <button id="clearBtn" class="btn btn-ghost" title="Clear text">Clear</button>
+          </div>
+        </div>
+
+        <div class="textarea-wrapper">
+          <textarea id="hindiInput" placeholder="यहाँ हिन्दी में बोलें या लिखें (e.g. नमस्ते, आप कैसे हैं?, जोहार)..." autofocus></textarea>
+          <div id="asrLiveBadge" class="asr-live-badge hidden">
+            <span class="pulsing-dot"></span> Listening...
+          </div>
+        </div>
+
+        <!-- ASR Cleaning / Normalization Feedback -->
+        <div class="asr-enhancer-box">
+          <div class="enhancer-header">
+            <span class="enhancer-title">
+              <svg class="mini-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/>
+              </svg>
+              Hindi Speech Normalizer
+            </span>
+            <span class="enhancer-stats" id="normStats">Nukta & Matra filter active</span>
+          </div>
+          <div class="sample-chips">
+            <span class="chip-label">Quick Phrases:</span>
+            <button class="chip" data-text="नमस्ते">नमस्ते (Hello)</button>
+            <button class="chip" data-text="जोहार">जोहार (Johar)</button>
+            <button class="chip" data-text="आप कैसे हैं?">आप कैसे हैं?</button>
+            <button class="chip" data-text="धन्यवाद">धन्यवाद (Thank you)</button>
+            <button class="chip" data-text="सब कुछ ठीक है">सब कुछ ठीक है</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Output Card (Santali Ol Chiki) -->
+      <section class="card output-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="badge ol-badge">ᱥᱟᱱᱛᱟᱲᱤ (Ol Chiki)</span>
+            <span class="script-tag">Unicode U+1C50 - U+1C7F</span>
+          </div>
+          <div class="card-actions">
+            <button id="copyBtn" class="btn btn-secondary" title="Copy Ol Chiki text">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+              </svg>
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div class="output-wrapper">
+          <textarea id="olChikiOutput" class="ol-chiki-display ol-chiki-textarea" placeholder="ᱚᱞ ᱪᱤᱠᱤ ᱥᱟᱱᱛᱟᱲᱤ ᱚᱞ (Santali Ol Chiki text appears here or type directly)..."></textarea>
+        </div>
+
+        <!-- Pronunciation / Transliteration Helper -->
+        <div class="pronunciation-box">
+          <span class="pronounce-label">Phonetic Roman:</span>
+          <span id="romanOutput" class="roman-text">—</span>
+        </div>
+
+        <!-- TTS Player Panel -->
+        <div class="tts-player-panel">
+          <div class="player-header">
+            <div class="voice-selector-wrap">
+              <label for="voiceSelect">Voice:</label>
+              <select id="voiceSelect" class="form-select">
+                <option value="female">Santali Female (Natural / Clear)</option>
+                <option value="male">Santali Male (Clear Tone)</option>
+              </select>
+            </div>
+            <div class="player-actions">
+              <label class="auto-speak-toggle" title="Automatically call Colab when speech recognition finishes">
+                <input type="checkbox" id="autoSynthesizeCheck" />
+                <span>Auto-Synthesize</span>
+              </label>
+              <button id="speakBtn" class="btn btn-accent">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                </svg>
+                <span id="speakBtnText">⚡ Synthesize & Play</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Audio Element & Visualizer -->
+          <div class="audio-control-bar">
+            <audio id="audioElement" preload="auto" controls></audio>
+            <div class="audio-track-info">
+              <div class="track-name" id="trackName">AI4Bharat Indic Parler-TTS (44.1 kHz DAC)</div>
+              <div class="track-status" id="trackStatus">Connect Colab above to synthesize live in ~2-3s</div>
+            </div>
+            <div class="sample-audio-btn-group">
+              <button id="loadGeneratedBtn" class="btn btn-sm btn-ghost" title="Load local test_santali.wav fallback">
+                Load Sample
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FLN BANK Section -->
+    <section class="card fln-bank-section">
+      <div class="fln-bank-header">
+        <div class="fln-title-group">
+          <div class="fln-badge-wrap">
+            <span class="badge fln-bank-badge">📚 FLN BANK</span>
+            <span class="fln-badge-count">27 Master Pedagogy Phrases</span>
+          </div>
+          <h2 class="fln-bank-heading">NIPUN Bharat Vernacular Classroom Bank</h2>
+          <p class="fln-bank-desc">Curated foundational phrases with authentic meaning-based Santali (Ol Chiki) translation and true phonetic Roman pronunciation.</p>
+        </div>
+        
+        <!-- Category Filter Tabs -->
+        <div class="fln-filter-tabs" id="flnFilterTabs">
+          <button class="fln-tab active" data-category="all">All Phrases (27)</button>
+          <button class="fln-tab" data-category="classroom">Daily Classroom (7)</button>
+          <button class="fln-tab" data-category="praise">Praise & Encouragement (5)</button>
+          <button class="fln-tab" data-category="discipline">Discipline & Attention (5)</button>
+          <button class="fln-tab" data-category="activity">Classroom Activities (5)</button>
+          <button class="fln-tab" data-category="greetings">Greetings & Courtesies (5)</button>
+        </div>
+      </div>
+
+      <!-- Phrases Grid Container -->
+      <div class="fln-cards-grid" id="flnCardsGrid">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Ol Chiki On-screen Keyboard Tray (Collapsible) -->
+    <section class="keyboard-section">
+      <div class="section-toggle-header" id="toggleKeyboard">
+        <h3>
+          <svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 16h10"/>
+          </svg>
+          Ol Chiki (ᱚᱞ ᱪᱤᱠᱤ) On-screen Keyboard & Characters Reference
+        </h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div id="keyboardContainer" class="keyboard-grid">
+        <!-- Generated by JS -->
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Built with ❤️ for Low-Resource Indian Languages &bull; Santali (Ol Chiki) Speech Synthesis &bull; AI4Bharat Rasa & Indic Parler-TTS</p>
+    </footer>
+  </div>
+
+  <script src="app.js?v=6"></script>
+</body>
+</html>
