@@ -879,7 +879,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const colabStatusText = document.getElementById("colabStatusText");
   const bridgeHint = document.getElementById("bridgeHint");
 
-  let colabBaseUrl = "https://jake-amanda-ada-manitoba.trycloudflare.com";
+  let colabBaseUrl = "https://footage-overdrive-clench.ngrok-free.dev";
   colabUrlInput.value = colabBaseUrl;
   testColabConnection(colabBaseUrl, false);
 
