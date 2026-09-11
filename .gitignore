@@ -1,0 +1,52 @@
+# Model Checkpoints, Weights & Cache (NEVER PUSH TO GITHUB)
+checkpoints/
+**/checkpoints/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.tflite
+
+# Datasets & Large Data
+data/
+**/data/
+*.csv
+*.tsv
+*.parquet
+*.arrow
+*.tar
+*.tar.gz
+*.zip
+
+# Audio Outputs & Media Files
+outputs/
+**/outputs/
+*.wav
+*.mp3
+*.flac
+*.ogg
+
+# Python virtual environment and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+env/
+venv/
+
+# Jupyter & Colab Caches
+.ipynb_checkpoints/
+notebooks/
+
+# Model Training Scripts
+scripts/train*.py
+scripts/download*.py
+scripts/eval*.py
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
