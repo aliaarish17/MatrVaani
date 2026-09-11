@@ -1077,12 +1077,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-      const res = await fetch(`${cleanUrl}/health`, {
-        method: "GET",
-        headers: { "Accept": "application/json" },
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
+     const res = await fetch(`${cleanUrl}/health`, {
+      method: "GET",
+     headers: {
+    "Accept": "application/json",
+    "ngrok-skip-browser-warning": "true"
+  },
+  signal: controller.signal
+});
+clearTimeout(timeoutId);
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
