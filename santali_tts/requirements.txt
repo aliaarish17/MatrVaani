@@ -1,0 +1,2 @@
+# Santali TTS Fine-Tuning & Inference Pipeline Dependencies
+-r ../requirements.txt

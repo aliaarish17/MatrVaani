@@ -1,0 +1,38 @@
+# ==============================================================================
+# MatrVaani: Hindi to Santali (Ol Chiki) Voice AI & Pedagogy Suite
+# Core Python Dependencies Specification
+# ==============================================================================
+
+# Core Deep Learning Framework
+torch>=2.1.0
+torchaudio>=2.1.0
+accelerate>=0.26.0
+
+# Hugging Face Model & Data Hub
+transformers>=4.38.0
+datasets>=2.16.1
+huggingface_hub>=0.20.3
+
+# Parler-TTS Framework (Install directly from official repo)
+# pip install git+https://github.com/huggingface/parler-tts.git
+git+https://github.com/huggingface/parler-tts.git@main
+
+# Audio I/O and Digital Signal Processing
+soundfile>=0.12.1
+librosa>=0.10.1
+scipy>=1.11.0
+numpy>=1.24.0
+
+# Colab GPU FastAPI Bridge Server
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+requests>=2.31.0
+
+# ONNX & Edge Optimization (Optional / Offline Pipeline)
+onnx>=1.15.0
+onnxruntime>=1.16.3
+
+# Utilities
+tqdm>=4.66.1
+python-dotenv>=1.0.0
