@@ -331,7 +331,7 @@ This project is licensed under the **[MIT License](LICENSE)**.
 
 <div align="center">
 
-**Developed with ❤️ by [Aarish Ali](https://github.com/aliaarish17)**  
-*Smart India Hackathon Internal Finalist • Low-Resource Indian Language AI*
+  
+
 
 </div>
