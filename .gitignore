@@ -1,20 +1,46 @@
-# Python cache and temporary files
+# Python cache and bytecode
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment and local configs
 .env
+.env.local
 .venv/
 env/
 venv/
+ENV/
+
+# IDE & OS Artifacts
 .DS_Store
 Thumbs.db
+ehthumbs.db
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
 
-# Very large binary weights (>100MB limit on GitHub)
+# Large binary weights & checkpoints (>100MB limit on GitHub)
 *.bin
 *.safetensors
 *.pt
 *.pth
+*.onnx
 *.tar.gz
 *.zip
+
+# Audio outputs & data caches (keep directory structure via .gitkeep)
+/santali_tts/data/*
+!/santali_tts/data/.gitkeep
+/santali_tts/checkpoints/*
+!/santali_tts/checkpoints/.gitkeep
+/santali_tts/outputs/*
+!/santali_tts/outputs/.gitkeep
+*.wav
+*.mp3
+*.flac
+*.ogg
