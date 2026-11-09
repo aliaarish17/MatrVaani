@@ -1,8 +1,3 @@
-# ==============================================================================
-# MatrVaani: Hindi to Santali (Ol Chiki) Voice AI & Pedagogy Suite
-# Core Python Dependencies Specification
-# ==============================================================================
-
 # Core Deep Learning Framework
 torch>=2.1.0
 torchaudio>=2.1.0
